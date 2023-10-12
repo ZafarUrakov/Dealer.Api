@@ -1,15 +1,21 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Dealer.Api.Brokers.DateTimes;
+using Dealer.Api.Brokers.Loggings;
+using Dealer.Api.Brokers.Spreadsheets;
+using Dealer.Api.Brokers.Storages;
+using Dealer.Api.Services.Foundations.Applicants;
+using Dealer.Api.Services.Foundations.ExternalApplicants;
+using Dealer.Api.Services.Foundations.Groups;
+using Dealer.Api.Services.Foundations.Spreadsheets;
+using Dealer.Api.Services.Orchestrations.ExternalApplicants;
+using Dealer.Api.Services.Processings.Applicants;
+using Dealer.Api.Services.Processings.ExternalApplicants;
+using Dealer.Api.Services.Processings.Groups;
+using Dealer.Api.Services.Processings.Spreadsheets;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 
 namespace Dealer.Api
@@ -27,6 +33,20 @@ namespace Dealer.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddTransient<IStorageBroker, StorageBroker>();
+            services.AddTransient<ISpreadsheetBroker, SpreadsheetBroker>();
+            services.AddTransient<IDateTimeBroker, DateTimeBroker>();
+            services.AddTransient<ILoggingBroker, LoggingBroker>();
+            services.AddTransient<IOrchestrationService, OrchestrationService>();
+            services.AddTransient<IGroupProcessingService, GroupProcessingService>();
+            services.AddTransient<IApplicantProcessingService, ApplicantProcessingService>();
+            services.AddTransient<IExternalApplicantProcessingService, ExternalApplicantProcessingService>();
+            services.AddTransient<ISpreadsheetProcessingService, SpreadsheetProcessingService>();
+            services.AddTransient<IGroupService, GroupService>();
+            services.AddTransient<IApplicantService, ApplicantService>();
+            services.AddTransient<IExternalApplicantService, ExternalApplicantService>();
+            services.AddTransient<ISpreadsheetService, SpreadsheetService>();
+            services.AddTransient<IGroupService, GroupService>();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Dealer.Api", Version = "v1" });
