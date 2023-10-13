@@ -6,6 +6,6 @@ namespace Dealer.Api.Services.Processings.ExternalApplicants
 {
     public interface IExternalApplicantProcessingService
     {
-        List<ExternalApplicant> GetValidExternalApplicants(MemoryStream memoryStream);
+        List<ExternalApplicant> GetValidExternalApplicants(string failPath);
     }
 }

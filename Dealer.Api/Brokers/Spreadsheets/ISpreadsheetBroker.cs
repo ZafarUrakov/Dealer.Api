@@ -6,6 +6,6 @@ namespace Dealer.Api.Brokers.Spreadsheets
 {
     public interface ISpreadsheetBroker
     {
-        List<ExternalApplicant> ImportApplicants(MemoryStream memoryStream);
+        List<ExternalApplicant> ImportApplicants(string filePath);
     }
 }

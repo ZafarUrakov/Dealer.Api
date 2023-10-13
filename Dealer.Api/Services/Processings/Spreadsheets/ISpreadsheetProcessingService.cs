@@ -7,6 +7,6 @@ namespace Dealer.Api.Services.Processings.Spreadsheets
 {
     public interface ISpreadsheetProcessingService
     {
-        ValueTask<List<ExternalApplicant>> ReadExternalApplicant(IFormFile formFile);
+        ValueTask<List<ExternalApplicant>> ReadExternalApplicant(string filePath);
     }
 }
