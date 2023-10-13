@@ -1,5 +1,3 @@
-using System;
-using System.Threading.Tasks;
 using Dealer.Api.Brokers.Loggings;
 using Dealer.Api.Models.Applicants;
 using Dealer.Api.Models.ExternalApplicants;
@@ -7,11 +5,12 @@ using Dealer.Api.Models.Groups;
 using Dealer.Api.Services.Processings.Applicants;
 using Dealer.Api.Services.Processings.Groups;
 using Dealer.Api.Services.Processings.Spreadsheets;
-using Microsoft.AspNetCore.Http;
+using System;
+using System.Threading.Tasks;
 
 namespace Dealer.Api.Services.Orchestrations.ExternalApplicants
 {
-    public class OrchestrationService : IOrchestrationService
+    public partial class OrchestrationService : IOrchestrationService
     {
         private readonly IApplicantProcessingService applicantProcessingService;
         private readonly IGroupProcessingService groupProcessingService;
@@ -30,16 +29,17 @@ namespace Dealer.Api.Services.Orchestrations.ExternalApplicants
             this.loggingBroker = loggingBroker;
         }
 
-        public Task ProcessImportRequest(IFormFile formFile) =>
+        public Task ProcessImportRequest(string filePath) =>
         TryCatch(async () =>
         {
             var validExternalApplicants =
-                await spreadsheetProcessingService.ReadExternalApplicant(formFile);
+                await spreadsheetProcessingService.ReadExternalApplicant(filePath);
 
             foreach (var externalApplicant in validExternalApplicants)
             {
                 var ensureGroup =
-                    await groupProcessingService.EnsureGroupExistsByName(externalApplicant.GroupName);
+                    await groupProcessingService
+                    .EnsureGroupExistsByName(externalApplicant.GroupName);
 
                 var applicant = MapToApplicant(externalApplicant, ensureGroup);
 
@@ -57,8 +57,8 @@ namespace Dealer.Api.Services.Orchestrations.ExternalApplicants
                 BirthDate = externalApplicant.BirthDate,
                 Email = externalApplicant.Email,
                 PhoneNumber = externalApplicant.PhoneNumber,
-                GroupId = externalApplicant.GroupId,
-                GroupName = externalApplicant.GroupName
+                GroupId = ensureGroup.GroupId,
+                GroupName = ensureGroup.GroupName
             };
         }
     }

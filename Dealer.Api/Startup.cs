@@ -32,25 +32,24 @@ namespace Dealer.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
-            services.AddTransient<IStorageBroker, StorageBroker>();
-            services.AddTransient<ISpreadsheetBroker, SpreadsheetBroker>();
-            services.AddTransient<IDateTimeBroker, DateTimeBroker>();
-            services.AddTransient<ILoggingBroker, LoggingBroker>();
-            services.AddTransient<IOrchestrationService, OrchestrationService>();
-            services.AddTransient<IGroupProcessingService, GroupProcessingService>();
-            services.AddTransient<IApplicantProcessingService, ApplicantProcessingService>();
-            services.AddTransient<IExternalApplicantProcessingService, ExternalApplicantProcessingService>();
-            services.AddTransient<ISpreadsheetProcessingService, SpreadsheetProcessingService>();
-            services.AddTransient<IGroupService, GroupService>();
-            services.AddTransient<IApplicantService, ApplicantService>();
-            services.AddTransient<IExternalApplicantService, ExternalApplicantService>();
-            services.AddTransient<ISpreadsheetService, SpreadsheetService>();
-            services.AddTransient<IGroupService, GroupService>();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Dealer.Api", Version = "v1" });
             });
+            services.AddControllers();
+            services.AddTransient<IDateTimeBroker, DateTimeBroker>();
+            services.AddTransient<ILoggingBroker, LoggingBroker>();
+            services.AddDbContext<IStorageBroker, StorageBroker>();
+            services.AddTransient<ISpreadsheetBroker, SpreadsheetBroker>();
+            services.AddTransient<IApplicantService, ApplicantService>();
+            services.AddTransient<IExternalApplicantService, ExternalApplicantService>();
+            services.AddTransient<IGroupService, GroupService>();
+            services.AddTransient<ISpreadsheetService, SpreadsheetService>();
+            services.AddTransient<IOrchestrationService, OrchestrationService>();
+            services.AddTransient<IApplicantProcessingService, ApplicantProcessingService>();
+            services.AddTransient<IExternalApplicantProcessingService, ExternalApplicantProcessingService>();
+            services.AddTransient<IGroupProcessingService, GroupProcessingService>();
+            services.AddTransient<ISpreadsheetProcessingService, SpreadsheetProcessingService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

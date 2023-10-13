@@ -5,6 +5,6 @@ namespace Dealer.Api.Services.Orchestrations.ExternalApplicants
 {
     public interface IOrchestrationService
     {
-        Task ProcessImportRequest(IFormFile formFile);
+        Task ProcessImportRequest(string filePath);
     }
 }

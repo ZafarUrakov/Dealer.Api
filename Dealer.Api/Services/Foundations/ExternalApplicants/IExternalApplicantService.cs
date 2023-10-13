@@ -6,6 +6,6 @@ namespace Dealer.Api.Services.Foundations.ExternalApplicants
 {
     public interface IExternalApplicantService
     {
-        List<ExternalApplicant> ReadExternalApplicants(MemoryStream memoryStream);
+        List<ExternalApplicant> ReadExternalApplicants(string filePath);
     }
 }

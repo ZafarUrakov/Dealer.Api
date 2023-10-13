@@ -1,7 +1,6 @@
-﻿using System;
-using System.Threading.Tasks;
-using Dealer.Api.Models.Orchestration.Exceptions;
+﻿using Dealer.Api.Models.Orchestration.Exceptions;
 using Dealer.Api.Models.Processings.Exceptions;
+using System.Threading.Tasks;
 using Xeptions;
 
 namespace Dealer.Api.Services.Orchestrations.ExternalApplicants
