@@ -1,5 +1,6 @@
 using System;
 using System.Threading.Tasks;
+using Dealer.Api.Brokers.Loggings;
 using Dealer.Api.Models.Applicants;
 using Dealer.Api.Models.ExternalApplicants;
 using Dealer.Api.Models.Groups;
@@ -15,18 +16,22 @@ namespace Dealer.Api.Services.Orchestrations.ExternalApplicants
         private readonly IApplicantProcessingService applicantProcessingService;
         private readonly IGroupProcessingService groupProcessingService;
         private readonly ISpreadsheetProcessingService spreadsheetProcessingService;
+        private readonly ILoggingBroker loggingBroker;
 
         public OrchestrationService(
             ISpreadsheetProcessingService spreadsheetProcessingService,
             IGroupProcessingService groupProcessingService,
-            IApplicantProcessingService applicantProcessingService)
+            IApplicantProcessingService applicantProcessingService,
+            ILoggingBroker loggingBroker)
         {
             this.spreadsheetProcessingService = spreadsheetProcessingService;
             this.groupProcessingService = groupProcessingService;
             this.applicantProcessingService = applicantProcessingService;
+            this.loggingBroker = loggingBroker;
         }
 
-        public async Task ProcessImportRequest(IFormFile formFile)
+        public Task ProcessImportRequest(IFormFile formFile) =>
+        TryCatch(async () =>
         {
             var validExternalApplicants =
                 await spreadsheetProcessingService.ReadExternalApplicant(formFile);
@@ -40,7 +45,7 @@ namespace Dealer.Api.Services.Orchestrations.ExternalApplicants
 
                 await applicantProcessingService.AddApplicantAsync(applicant);
             }
-        }
+        });
 
         private Applicant MapToApplicant(ExternalApplicant externalApplicant, Group ensureGroup)
         {

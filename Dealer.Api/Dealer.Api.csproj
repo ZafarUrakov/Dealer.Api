@@ -5,7 +5,9 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3"/>
+        <PackageReference Include="Bytescout.Spreadsheet" Version="4.7.1.2054" />
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+        <PackageReference Include="Xeption" Version="2.6.0" />
     </ItemGroup>
 
 </Project>
