@@ -1,3 +1,5 @@
+using Xunit;
+
 namespace Dealer.Api.Tests
 {
     public class DeleteMe

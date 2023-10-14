@@ -36,13 +36,13 @@ namespace Dealer.Api.Controllers
             }
         }
 
-        ////[HttpGet("GetAllApplicants")]
+        [HttpGet("GetAllApplicants")]
 
-        ////public IActionResult GetAllApplicants()
-        ////{
-        ////    var applicants = this.applicantService.RetrieveAllApplicants();
+        public IActionResult GetAllApplicants()
+        {
+            var applicants = this.applicantService.RetrieveAllApplicants();
 
-        ////    return Ok(applicants);
-        ////}
+            return Ok(applicants);
+        }
     }
 }

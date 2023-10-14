@@ -17,11 +17,11 @@ namespace Dealer.Api.Services.Processings.ExternalApplicants
             this.loggingBroker = loggingBroker;
         }
 
-        public List<ExternalApplicant> GetValidExternalApplicants(MemoryStream memoryStream) =>
+        public List<ExternalApplicant> GetValidExternalApplicants(string filePath) =>
         TryCatch(() =>
         {
             List<ExternalApplicant> validExternalApplicants =
-                this.externalApplicantService.ReadExternalApplicants(memoryStream);
+                this.externalApplicantService.ReadExternalApplicants(filePath);
             ValidateExternalApplicantsExists(validExternalApplicants);
 
             validExternalApplicants.ForEach(externalApplicant =>
