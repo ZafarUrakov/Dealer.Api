@@ -1,3 +1,6 @@
+using Dealer.Api.Brokers.DateTimes;
+using Dealer.Api.Brokers.Loggings;
+using Dealer.Api.Brokers.Storages;
 using Dealer.Api.Models.Applicants;
 using System;
 using System.Linq;
@@ -5,12 +8,29 @@ using System.Threading.Tasks;
 
 namespace Dealer.Api.Services.Foundations.Applicants
 {
-    public class ApplicantService : IApplicantService
+    public partial class ApplicantService : IApplicantService
     {
-        public ValueTask<Applicant> AddApplicantAsync(Applicant applicant)
+        private readonly IStorageBroker storageBroker;
+        private readonly IDateTimeBroker dateTimeBroker;
+        private readonly ILoggingBroker loggingBroker;
+
+        public ApplicantService(
+            IStorageBroker storageBroker,
+            IDateTimeBroker dateTimeBroker,
+            ILoggingBroker loggingBroker)
         {
-            throw new NotImplementedException();
+            this.storageBroker = storageBroker;
+            this.dateTimeBroker = dateTimeBroker;
+            this.loggingBroker = loggingBroker;
         }
+
+        public ValueTask<Applicant> AddApplicantAsync(Applicant applicant) =>
+        TryCatch(async () =>
+        {
+            ValidateApplicantOnAdd(applicant);
+
+            return await this.storageBroker.InsertApplicantAsync(applicant);
+        });
 
         public ValueTask<Applicant> RetrieveApplicantByIdAsync(Guid applicantid)
         {
