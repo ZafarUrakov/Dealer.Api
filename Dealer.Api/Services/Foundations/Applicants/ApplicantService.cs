@@ -37,10 +37,9 @@ namespace Dealer.Api.Services.Foundations.Applicants
             throw new NotImplementedException();
         }
 
-        public IQueryable RetrieveAllApplicants()
-        {
-            throw new NotImplementedException();
-        }
+        public IQueryable RetrieveAllApplicants() =>
+             this.storageBroker.SelectAllApplicants();
+        
 
         public ValueTask<Applicant> ModifyApplicantAsync(Applicant applicant)
         {

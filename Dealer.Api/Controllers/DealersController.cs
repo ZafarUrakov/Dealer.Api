@@ -1,25 +1,24 @@
-using Dealer.Api.Models.Applicants;
-using Dealer.Api.Services.Orchestrations.ExternalApplicants;
-using DocumentFormat.OpenXml.Office2010.ExcelAc;
-using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
+using Dealer.Api.Services.Foundations.Applicants;
+using Dealer.Api.Services.Orchestrations.ExternalApplicants;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Dealer.Api.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    // [Authorize]
     public class DealersController : Controller
     {
-        private readonly OrchestrationService orchestrationService;
+        private readonly IOrchestrationService orchestrationService;
+        private readonly IApplicantService applicantService;
 
-        public DealersController(OrchestrationService orchestrationService)
+        public DealersController(IOrchestrationService orchestrationService, IApplicantService applicantService)
         {
             this.orchestrationService = orchestrationService;
+            this.applicantService = applicantService;
         }
-        string filePath = @"C:\Users\icom\Desktop\.net.xlsx";
+        string filePath = @"C:\Users\Jamshidbek\Documents\import\applicants.xlsx";
 
         [HttpPost("Start")]
         public async Task<IActionResult> PostApplicants()
@@ -35,5 +34,13 @@ namespace Dealer.Api.Controllers
             }
         }
 
+        //[HttpGet("GetAllApplicants")]
+
+        //public IActionResult GetAllApplicants()
+        //{
+        //    var applicants = this.applicantService.RetrieveAllApplicants();
+
+        //    return Ok(applicants);
+        //}
     }
 }

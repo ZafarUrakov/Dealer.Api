@@ -3,8 +3,8 @@ using Dealer.Api.Models.Applicants;
 using Dealer.Api.Models.ExternalApplicants;
 using Dealer.Api.Models.Groups;
 using Dealer.Api.Services.Processings.Applicants;
+using Dealer.Api.Services.Processings.ExternalApplicants;
 using Dealer.Api.Services.Processings.Groups;
-using Dealer.Api.Services.Processings.Spreadsheets;
 using System;
 using System.Threading.Tasks;
 
@@ -14,26 +14,26 @@ namespace Dealer.Api.Services.Orchestrations.ExternalApplicants
     {
         private readonly IApplicantProcessingService applicantProcessingService;
         private readonly IGroupProcessingService groupProcessingService;
-        private readonly ISpreadsheetProcessingService spreadsheetProcessingService;
+        private readonly IExternalApplicantProcessingService externalApplicantProcessingService;
         private readonly ILoggingBroker loggingBroker;
 
         public OrchestrationService(
-            ISpreadsheetProcessingService spreadsheetProcessingService,
             IGroupProcessingService groupProcessingService,
             IApplicantProcessingService applicantProcessingService,
-            ILoggingBroker loggingBroker)
+            ILoggingBroker loggingBroker,
+            IExternalApplicantProcessingService externalApplicantProcessingService)
         {
-            this.spreadsheetProcessingService = spreadsheetProcessingService;
             this.groupProcessingService = groupProcessingService;
             this.applicantProcessingService = applicantProcessingService;
             this.loggingBroker = loggingBroker;
+            this.externalApplicantProcessingService = externalApplicantProcessingService;
         }
 
         public Task ProcessImportRequest(string filePath) =>
         TryCatch(async () =>
         {
             var validExternalApplicants =
-                await spreadsheetProcessingService.ReadExternalApplicant(filePath);
+                this.externalApplicantProcessingService.GetValidExternalApplicants(filePath);
 
             foreach (var externalApplicant in validExternalApplicants)
             {
