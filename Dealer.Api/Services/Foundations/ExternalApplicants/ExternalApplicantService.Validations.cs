@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Text.RegularExpressions;
-using Dealer.Api.Models.ExternalApplicants;
+﻿using Dealer.Api.Models.ExternalApplicants;
 using Dealer.Api.Models.ExternalApplicants.Exceptions;
+using System.Collections.Generic;
 
 namespace Dealer.Api.Services.Foundations.ExternalApplicants
 {
@@ -21,7 +18,7 @@ namespace Dealer.Api.Services.Foundations.ExternalApplicants
         {
             foreach (var applicant in externalApplicants)
             {
-                if(applicant is null)
+                if (applicant is null)
                 {
                     externalApplicants.Remove(applicant);
                     throw new NullExternalApplicantException();

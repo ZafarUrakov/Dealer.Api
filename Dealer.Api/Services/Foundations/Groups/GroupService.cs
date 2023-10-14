@@ -1,8 +1,7 @@
-using System;
-using System.Linq;
-using System.Threading.Tasks;
 using Dealer.Api.Brokers.Storages;
 using Dealer.Api.Models.Groups;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Dealer.Api.Services.Foundations.Groups
 {

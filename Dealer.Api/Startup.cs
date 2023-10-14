@@ -43,7 +43,7 @@ namespace Dealer.Api
             services.AddControllers();
             services.AddTransient<IDateTimeBroker, DateTimeBroker>();
             services.AddTransient<ILoggingBroker, LoggingBroker>();
-            services.AddDbContext<IStorageBroker, StorageBroker>();
+            services.AddTransient<IStorageBroker, StorageBroker>();
             services.AddTransient<ISpreadsheetBroker, SpreadsheetBroker>();
             services.AddTransient<IApplicantService, ApplicantService>();
             services.AddTransient<IExternalApplicantService, ExternalApplicantService>();
@@ -61,7 +61,7 @@ namespace Dealer.Api
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI(options => options.SwaggerEndpoint(
-                    url:"/swagger/v1/swagger.json",
+                    url: "/swagger/v1/swagger.json",
                     name: "Dealer.Api v1"));
             }
 

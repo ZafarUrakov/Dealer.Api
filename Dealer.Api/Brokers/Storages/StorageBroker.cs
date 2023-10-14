@@ -1,9 +1,6 @@
-using Dealer.Api.Models.Applicants;
-using Dealer.Api.Models.Groups;
 using EFxceptions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using System;
 using System.Linq;
 using System.Threading.Tasks;
 

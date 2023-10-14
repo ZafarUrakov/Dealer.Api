@@ -1,7 +1,7 @@
+using Dealer.Api.Models.Applicants;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
-using Dealer.Api.Models.Applicants;
 
 namespace Dealer.Api.Services.Foundations.Applicants
 {

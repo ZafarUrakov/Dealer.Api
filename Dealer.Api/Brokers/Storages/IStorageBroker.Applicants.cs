@@ -1,7 +1,7 @@
-﻿using System.Linq;
-using System.Threading.Tasks;
+﻿using Dealer.Api.Models.Applicants;
 using System;
-using Dealer.Api.Models.Applicants;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Dealer.Api.Brokers.Storages
 {

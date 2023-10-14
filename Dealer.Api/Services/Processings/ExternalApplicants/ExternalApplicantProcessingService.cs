@@ -1,9 +1,8 @@
-using System.Collections.Generic;
-using System.IO;
 using Dealer.Api.Brokers.Loggings;
 using Dealer.Api.Models.ExternalApplicants;
-using Dealer.Api.Models.Processings.Exceptions;
 using Dealer.Api.Services.Foundations.ExternalApplicants;
+using System.Collections.Generic;
+using System.IO;
 
 namespace Dealer.Api.Services.Processings.ExternalApplicants
 {
@@ -12,19 +11,17 @@ namespace Dealer.Api.Services.Processings.ExternalApplicants
         private readonly IExternalApplicantService externalApplicantService;
         private readonly ILoggingBroker loggingBroker;
 
-        public ExternalApplicantProcessingService(
-            IExternalApplicantService externalApplicantService, 
-            ILoggingBroker loggingBroker)
+        public ExternalApplicantProcessingService(IExternalApplicantService externalApplicantService, ILoggingBroker loggingBroker)
         {
             this.externalApplicantService = externalApplicantService;
             this.loggingBroker = loggingBroker;
         }
 
-        public List<ExternalApplicant> GetValidExternalApplicants(string filePath) =>
+        public List<ExternalApplicant> GetValidExternalApplicants(MemoryStream memoryStream) =>
         TryCatch(() =>
         {
             List<ExternalApplicant> validExternalApplicants =
-                this.externalApplicantService.ReadExternalApplicants(filePath);
+                this.externalApplicantService.ReadExternalApplicants(memoryStream);
             ValidateExternalApplicantsExists(validExternalApplicants);
 
             validExternalApplicants.ForEach(externalApplicant =>

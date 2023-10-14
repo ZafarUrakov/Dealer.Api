@@ -1,5 +1,5 @@
-using System.Threading.Tasks;
 using Dealer.Api.Models.Applicants;
+using System.Threading.Tasks;
 
 namespace Dealer.Api.Services.Processings.Applicants
 {

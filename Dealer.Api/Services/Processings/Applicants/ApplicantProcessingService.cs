@@ -1,7 +1,7 @@
-using System.Threading.Tasks;
 using Dealer.Api.Brokers.Loggings;
 using Dealer.Api.Models.Applicants;
 using Dealer.Api.Services.Foundations.Applicants;
+using System.Threading.Tasks;
 
 namespace Dealer.Api.Services.Processings.Applicants
 {

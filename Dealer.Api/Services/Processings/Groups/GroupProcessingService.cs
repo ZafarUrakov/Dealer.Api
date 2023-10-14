@@ -1,10 +1,10 @@
-using System;
-using System.Linq;
-using System.Threading.Tasks;
 using Dealer.Api.Brokers.DateTimes;
 using Dealer.Api.Brokers.Loggings;
 using Dealer.Api.Models.Groups;
 using Dealer.Api.Services.Foundations.Groups;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Dealer.Api.Services.Processings.Groups
 {
