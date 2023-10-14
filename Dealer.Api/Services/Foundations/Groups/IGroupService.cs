@@ -1,6 +1,6 @@
+using Dealer.Api.Models.Groups;
 using System.Linq;
 using System.Threading.Tasks;
-using Dealer.Api.Models.Groups;
 
 namespace Dealer.Api.Services.Foundations.Groups
 {

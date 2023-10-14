@@ -1,15 +1,15 @@
 ﻿using Dealer.Api.Models.Applicants;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
-using System;
-using Dealer.Api.Models.Groups;
-using Microsoft.EntityFrameworkCore;
 
 namespace Dealer.Api.Brokers.Storages
 {
     public partial class StorageBroker
     {
         public DbSet<Applicant> Applicants { get; set; }
+
         public async ValueTask<Applicant> InsertApplicantAsync(Applicant applicant) =>
             await InsertAsync(applicant);
 

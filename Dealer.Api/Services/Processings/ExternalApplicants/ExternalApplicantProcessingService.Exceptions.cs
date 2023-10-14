@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using Dealer.Api.Models.ExternalApplicants;
+﻿using Dealer.Api.Models.ExternalApplicants;
 using Dealer.Api.Models.ExternalApplicants.Exceptions;
 using Dealer.Api.Models.Processings.Exceptions;
+using System.Collections.Generic;
 using Xeptions;
 
 namespace Dealer.Api.Services.Processings.ExternalApplicants
@@ -20,7 +20,7 @@ namespace Dealer.Api.Services.Processings.ExternalApplicants
             {
                 throw CreateAndLogValidationException(externalApplicantValidationException.InnerException as Xeption);
             }
-            catch(EmptySpreadsheetException emptySpreadsheetException)
+            catch (EmptySpreadsheetException emptySpreadsheetException)
             {
                 throw CreateAndLogValidationException(emptySpreadsheetException);
             }

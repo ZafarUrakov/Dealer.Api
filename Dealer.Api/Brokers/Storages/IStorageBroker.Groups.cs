@@ -1,5 +1,4 @@
-﻿using Dealer.Api.Models.Applicants;
-using Dealer.Api.Models.Groups;
+﻿using Dealer.Api.Models.Groups;
 using System.Linq;
 using System.Threading.Tasks;
 

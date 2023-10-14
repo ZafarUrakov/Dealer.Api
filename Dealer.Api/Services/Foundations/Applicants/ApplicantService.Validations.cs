@@ -1,8 +1,6 @@
 ﻿using Dealer.Api.Models.Applicants;
 using Dealer.Api.Models.Applicants.Exceptions;
 using System;
-using System.Data;
-using System.Reflection.Metadata;
 
 namespace Dealer.Api.Services.Foundations.Applicants
 {

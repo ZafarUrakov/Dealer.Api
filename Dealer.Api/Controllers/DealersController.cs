@@ -1,8 +1,8 @@
-using System;
-using System.Threading.Tasks;
 using Dealer.Api.Services.Foundations.Applicants;
 using Dealer.Api.Services.Orchestrations.ExternalApplicants;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Threading.Tasks;
 
 namespace Dealer.Api.Controllers
 {
@@ -13,12 +13,14 @@ namespace Dealer.Api.Controllers
         private readonly IOrchestrationService orchestrationService;
         private readonly IApplicantService applicantService;
 
-        public DealersController(IOrchestrationService orchestrationService, IApplicantService applicantService)
+        public DealersController(
+            IOrchestrationService orchestrationService,
+            IApplicantService applicantService)
         {
             this.orchestrationService = orchestrationService;
             this.applicantService = applicantService;
         }
-        string filePath = @"C:\Users\Jamshidbek\Documents\import\applicants.xlsx";
+        string filePath = @"C:\Users\icom\Desktop\.net.xlsx";
 
         [HttpPost("Start")]
         public async Task<IActionResult> PostApplicants()
@@ -34,13 +36,13 @@ namespace Dealer.Api.Controllers
             }
         }
 
-        //[HttpGet("GetAllApplicants")]
+        ////[HttpGet("GetAllApplicants")]
 
-        //public IActionResult GetAllApplicants()
-        //{
-        //    var applicants = this.applicantService.RetrieveAllApplicants();
+        ////public IActionResult GetAllApplicants()
+        ////{
+        ////    var applicants = this.applicantService.RetrieveAllApplicants();
 
-        //    return Ok(applicants);
-        //}
+        ////    return Ok(applicants);
+        ////}
     }
 }

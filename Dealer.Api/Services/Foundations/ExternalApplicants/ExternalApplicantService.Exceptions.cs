@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using Dealer.Api.Models.Applicants;
-using Dealer.Api.Models.ExternalApplicants;
+﻿using Dealer.Api.Models.ExternalApplicants;
 using Dealer.Api.Models.ExternalApplicants.Exceptions;
+using System.Collections.Generic;
 using Xeptions;
 
 namespace Dealer.Api.Services.Foundations.ExternalApplicants
@@ -21,7 +19,7 @@ namespace Dealer.Api.Services.Foundations.ExternalApplicants
             {
                 throw CreateAndLogValidationException(nullExternalApplicantException);
             }
-            catch(InvalidExternalApplicantException invalidExternalApplicantException)
+            catch (InvalidExternalApplicantException invalidExternalApplicantException)
             {
                 throw CreateAndLogValidationException(invalidExternalApplicantException);
             }

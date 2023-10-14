@@ -1,8 +1,8 @@
-using System.Collections.Generic;
-using System.IO;
 using Dealer.Api.Brokers.Loggings;
 using Dealer.Api.Brokers.Spreadsheets;
 using Dealer.Api.Models.ExternalApplicants;
+using System.Collections.Generic;
+using System.IO;
 
 namespace Dealer.Api.Services.Foundations.ExternalApplicants
 {
@@ -19,11 +19,11 @@ namespace Dealer.Api.Services.Foundations.ExternalApplicants
             this.loggingBroker = loggingBroker;
         }
 
-        public List<ExternalApplicant> ReadExternalApplicants(string filePath) =>
+        public List<ExternalApplicant> ReadExternalApplicants(MemoryStream memoryStream) =>
         TryCatch(() =>
         {
             List<ExternalApplicant> externalApplicants =
-                this.spreadsheetBroker.ImportApplicants(filePath);
+                this.spreadsheetBroker.ImportApplicants(memoryStream);
 
             ValidateExternalApplicantsOnImport(externalApplicants);
 
