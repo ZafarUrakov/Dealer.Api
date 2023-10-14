@@ -19,11 +19,11 @@ namespace Dealer.Api.Services.Foundations.ExternalApplicants
             this.loggingBroker = loggingBroker;
         }
 
-        public List<ExternalApplicant> ReadExternalApplicants(MemoryStream memoryStream) =>
+        public List<ExternalApplicant> ReadExternalApplicants(string filePath) =>
         TryCatch(() =>
         {
             List<ExternalApplicant> externalApplicants =
-                this.spreadsheetBroker.ImportApplicants(memoryStream);
+                this.spreadsheetBroker.ImportApplicants(filePath);
 
             ValidateExternalApplicantsOnImport(externalApplicants);
 
